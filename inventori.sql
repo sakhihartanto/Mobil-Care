@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2022 at 06:04 AM
+-- Generation Time: Jun 04, 2022 at 04:37 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -88,20 +88,9 @@ CREATE TABLE `kerusakan` (
 
 INSERT INTO `kerusakan` (`id`, `id_kerusakan`, `tanggal`, `kode_barang`, `nama_mesin`, `jenis`, `tindakan`, `catatan`, `biaya`) VALUES
 (8, 'KRS-0522002', '2022-05-17', '04.542.001-002', 'Single Post Lift', 'Meledak', 'Di ganti mesin BOS', 'Biaya akan di lanjutkan', '123333'),
-(9, 'KRS-0522003', '2022-07-08', '04.542.001-002', 'Single Post Lift', 'WEDUUUSS', 'TINDAKAN GANTI BOS', 'Biaya Mahal', '12345667'),
+(9, 'KRS-0522003', '2022-07-08', '04.542.001-002', 'Single Post Lift', 'WEDUUUSS', 'TINDAKAN GANTI BOS', 'Biaya Mahal Tapi gatau nih kalo bos gue kaya mah', '123456672'),
 (10, 'KRS-0522004', '2022-05-17', '04.346.001', 'Electrical Tester', 'Meledak', 'Di ganti', 'asasasa', '13123121'),
 (11, 'KRS-0522005', '2022-05-14', '04.345.001', 'Coil Spring Compresor', 'Meledak', 'Di ganti mesin', 'aaa', '1000000000');
-
---
--- Triggers `kerusakan`
---
-DELIMITER $$
-CREATE TRIGGER `barang_keluar` AFTER INSERT ON `kerusakan` FOR EACH ROW BEGIN
-	UPDATE gudang SET jumlah = jumlah-new.jumlah
-    WHERE kode_barang=new.kode_barang;
-    END
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -118,30 +107,21 @@ CREATE TABLE `pemeliharaan` (
   `checklist` varchar(500) NOT NULL,
   `catatan` varchar(500) NOT NULL,
   `petugas` varchar(200) NOT NULL,
-  `jumlah` int(100) NOT NULL
+  `jumlah` int(100) NOT NULL,
+  `done` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemeliharaan`
 --
 
-INSERT INTO `pemeliharaan` (`id`, `id_pemeliharaan`, `tanggal`, `kode_barang`, `nama_mesin`, `checklist`, `catatan`, `petugas`, `jumlah`) VALUES
-(36, 'PML-0522007', '0000-00-00', '04.345.001', 'Scanner Launch', 'Kebersihan Mesin', '111', '', 0),
-(38, 'PML-0522009', '0000-00-00', '04.345.001', 'Scanner Launch', 'Kebersihan Mesin,Kesehatan Mesin,Ganti Canvas Mesin', 'HALOHALO', '', 0),
-(41, 'PML-0522011', '2022-05-28', '', '4 Post Lift with 1 Jack', '', 'adadadadadaaaaaaaaaa111', 'Beben Kartiwa', 0),
-(42, 'PML-0522012', '2022-05-21', '', '', '', '1111', 'Andri', 0),
-(43, 'PML-0522013', '2022-05-20', '04.346.001', 'Electrical Tester', 'Kebersihan Mesin,Kesehatan Mesin', 'adadadadadaaaaaaaaaa12121', 'babang', 0);
-
---
--- Triggers `pemeliharaan`
---
-DELIMITER $$
-CREATE TRIGGER `barang_masuk` AFTER INSERT ON `pemeliharaan` FOR EACH ROW BEGIN
-	UPDATE gudang SET jumlah = jumlah+new.jumlah
-    WHERE kode_barang=new.kode_barang;
-    END
-$$
-DELIMITER ;
+INSERT INTO `pemeliharaan` (`id`, `id_pemeliharaan`, `tanggal`, `kode_barang`, `nama_mesin`, `checklist`, `catatan`, `petugas`, `jumlah`, `done`) VALUES
+(36, 'PML-0522007', '0000-00-00', '04.345.001', 'Scanner Launch', 'Kebersihan Mesin', '111', '', 0, 1),
+(38, 'PML-0522009', '0000-00-00', '04.345.001', 'Scanner Launch', 'Kebersihan Mesin,Kesehatan Mesin,Ganti Canvas Mesin', 'HALOHALO', '', 0, 1),
+(41, 'PML-0522011', '2022-05-28', '', '4 Post Lift with 1 Jack', '', 'adadadadadaaaaaaaaaa111', 'Beben Kartiwa', 0, 1),
+(43, 'PML-0522013', '2022-05-20', '04.346.001', 'Electrical Tester', 'Kebersihan Mesin,Kesehatan Mesin,Ganti Canvas Mesin', 'adadadadadaaaaaaaaaa12121', 'babang', 0, 0),
+(46, 'PML-0622015', '2022-06-04', '04.437.001', '', 'Periksa Kompresor Pegas untuk memastikannya tidak rusak.,Bersihkan kolom geser dan lap menggunakan sedikit oli transmisi.', '', '', 0, 0),
+(47, 'PML-0622016', '2022-06-04', '04.160.001-003', '4 Post Lift with 1 Jack', ' Periksa perangkat keras yang longgar />\r\n        <label class=,Periksa adaptor retak, atau rusak,Periksa pengukur tekanan dan selang yang rusak', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -229,7 +209,8 @@ INSERT INTO `users` (`id`, `nik`, `nama`, `alamat`, `telepon`, `username`, `pass
 (33, '', 'babang', '', '08232372327', 'babang', '8d213eebcccc4cecc92b215abb7bdcf3', 'mekanik', '16647380.jpg'),
 (34, '', 'Beben Kartiwa', '', '08122181723', 'beben', 'e10adc3949ba59abbe56e057f20f883e', 'pimpinan', 'pure-white-background-85a'),
 (35, '', 'Hendi Sutisna', '', '081220538655', 'hendi', 'e10adc3949ba59abbe56e057f20f883e', 'staf', 'pure-white-background-85a'),
-(36, '', 'Andri', '', '082316553015', 'andri', 'e10adc3949ba59abbe56e057f20f883e', 'mekanik', 'l.png');
+(36, '', 'Andri', '', '082316553015', 'andri', 'e10adc3949ba59abbe56e057f20f883e', 'mekanik', 'l.png'),
+(37, '', 'mekanik', '', '0811123123', 'meka', 'ea7cd15c9b11cb84e14b3a6b7520c400', 'mekanik', 'maskor.png');
 
 --
 -- Indexes for dumped tables
@@ -303,7 +284,7 @@ ALTER TABLE `kerusakan`
 -- AUTO_INCREMENT for table `pemeliharaan`
 --
 ALTER TABLE `pemeliharaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `satuan`
@@ -321,7 +302,7 @@ ALTER TABLE `tb_mesin`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
