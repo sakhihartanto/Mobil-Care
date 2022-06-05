@@ -61,13 +61,13 @@
   						<label for="">Kode Mesin</label>
   						<div class="form-group">
   							<div class="form-line">
-  								<select name="mesin" id="id_mesin" class="form-control" onchange="test()">
+  								<select name="barang" id="kode_mesin" class="form-control" onchange="test()">
   									<option value="">-- Pilih Mesin --</option>
   									<?php
 
 										$sql = $koneksi->query("select * from tb_mesin order by kode_mesin");
 										while ($data = $sql->fetch_assoc()) {
-											echo "<option value='$data[id]'>$data[kode_mesin] | $data[nama_mesin]</option>";
+											echo "<option value='$data[kode_mesin]'>$data[kode_mesin] | $data[nama_mesin]</option>";
 										}
 										?>
 
@@ -98,7 +98,7 @@
 
   						<script type="text/javascript">
   							function test() {
-  								if (document.getElementById("id_mesin").value == "26") {
+  								if (document.getElementById("kode_mesin").value == "04.437.001") {
   									document.getElementById("tmp1").innerHTML = `
 									  <label>Checklist</label>
 										<div class="form-group">
@@ -134,7 +134,7 @@
 										</div>
 										</div>
 									`;
-  								} else if (document.getElementById("id_mesin").value == "27") {
+  								} else if (document.getElementById("kode_mesin").value == "28") {
 									document.getElementById("tmp1").innerHTML = `
 									<label>Checklist</label>
 									<div class="form-group">
