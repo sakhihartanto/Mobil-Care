@@ -105,7 +105,7 @@
 										<div class="form-line">
 											<div class="form-check">
 											<div class="form-line">
-												<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value=" Periksa perangkat keras yang longgar " />
+												<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa perangkat keras yang longgar" />
 												<label class="form-check-label" for="checklist">
 												Periksa perangkat keras yang longgar
 												</label>
@@ -134,7 +134,7 @@
 										</div>
 										</div>
 									`;
-  								} else if (document.getElementById("kode_mesin").value == "28") {
+  								} else if (document.getElementById("kode_mesin").value == "04.438.001") {
 									document.getElementById("tmp1").innerHTML = `
 									<label>Checklist</label>
 									<div class="form-group">

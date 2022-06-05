@@ -46,7 +46,7 @@ if (empty($_SESSION['pimpinan'])) {
 
 </head>
 
-<body id="page-top" style="background-color:black">
+<body id="page-top" style="background-color:black" onload="test()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
