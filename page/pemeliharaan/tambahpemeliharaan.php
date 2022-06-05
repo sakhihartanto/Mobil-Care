@@ -1,6 +1,6 @@
   <?php
 
-	$koneksi = new mysqli("localhost", "root", "", "inventori");	
+	$koneksi = new mysqli("localhost", "root", "", "inventori");
 	$no = mysqli_query($koneksi, "select id_pemeliharaan from pemeliharaan order by id_pemeliharaan desc");
 	$idtran = mysqli_fetch_array($no);
 	$kode = $idtran['id_pemeliharaan'];
@@ -61,15 +61,15 @@
   						<label for="">Kode Mesin</label>
   						<div class="form-group">
   							<div class="form-line">
-  								<select name="mesin" id="id_mesin" class="form-control" />
-  								<option value="">-- Pilih Mesin --</option>
-  								<?php
+  								<select name="mesin" id="id_mesin" class="form-control" onchange="test()">
+  									<option value="">-- Pilih Mesin --</option>
+  									<?php
 
-									$sql = $koneksi->query("select * from tb_mesin order by kode_mesin");
-									while ($data = $sql->fetch_assoc()) {
-										echo "<option value='$data[kode_mesin]'>$data[kode_mesin] | $data[nama_mesin]</option>";
-									}
-									?>
+										$sql = $koneksi->query("select * from tb_mesin order by kode_mesin");
+										while ($data = $sql->fetch_assoc()) {
+											echo "<option value='$data[id]'>$data[kode_mesin] | $data[nama_mesin]</option>";
+										}
+										?>
 
   								</select>
   							</div>
@@ -78,15 +78,15 @@
   						<label for="">Nama Mesin</label>
   						<div class="form-group">
   							<div class="form-line">
-  								<select name="nama_mesin" class="form-control" />
-  								<option value="">-- Pilih Mesin --</option>
-  								<?php
+  								<select name="nama_mesin" class="form-control">
+  									<option value="">-- Pilih Mesin --</option>
+  									<?php
 
-									$sql = $koneksi->query("select * from tb_mesin order by nama_mesin");
-									while ($data = $sql->fetch_assoc()) {
-										echo "<option value='$data[nama_mesin]'>$data[nama_mesin]</option>";
-									}
-									?>
+										$sql = $koneksi->query("select * from tb_mesin order by nama_mesin");
+										while ($data = $sql->fetch_assoc()) {
+											echo "<option value='$data[nama_mesin]'>$data[nama_mesin]</option>";
+										}
+										?>
 
   								</select>
 
@@ -94,9 +94,79 @@
   							</div>
   						</div>
 
-						<div class="tampung1" id="tmp1"></div>
-						<div class="tampung2" id="tmp2"></div>
-								<!--
+  						<p id="tmp1"></p>
+
+  						<script type="text/javascript">
+  							function test() {
+  								if (document.getElementById("id_mesin").value == "26") {
+  									document.getElementById("tmp1").innerHTML = `
+									  <label>Checklist</label>
+										<div class="form-group">
+										<div class="form-line">
+											<div class="form-check">
+											<div class="form-line">
+												<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value=" Periksa perangkat keras yang longgar " />
+												<label class="form-check-label" for="checklist">
+												Periksa perangkat keras yang longgar
+												</label>
+											</div>
+											<div class="form-line">
+												<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa adaptor retak atau rusak" />
+												<label class="form-check-label" for="checklist">
+												Periksa adaptor retak, atau rusak
+												</label>
+											</div>
+											<div class="form-line">
+												<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa pengukur tekanan dan selang yang rusak" />
+												<label class="form-check-label" for="checklist">
+												Periksa pengukur tekanan dan selang yang rusak
+												</label>
+											</div>
+											<div class="form-line">
+												<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Membersihkan mesin dari kotoran minyak dan pasir" />
+												<label class="form-check-label" for="checklist">
+												Membersihkan mesin dari kotoran, minyak dan pasir
+												</label>
+											</div>
+											</div>
+											<br>
+											</input>
+										</div>
+										</div>
+									`;
+  								} else if (document.getElementById("id_mesin").value == "27") {
+									document.getElementById("tmp1").innerHTML = `
+									<label>Checklist</label>
+									<div class="form-group">
+										<div class="form-line">
+											<div class="form-check">
+												<div class="form-line">
+													<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa Kompresor Pegas untuk memastikannya tidak rusak." />
+													<label class="form-check-label" for="checklist">
+													Periksa Kompresor Pegas untuk memastikannya tidak rusak.
+													</label>
+												</div>
+												<div class="form-line">
+													<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Bersihkan kolom geser dan lap menggunakan sedikit oli transmisi." />
+													<label class="form-check-label" for="checklist">
+													Bersihkan kolom geser dan lap menggunakan sedikit oli transmisi.
+													</label>
+												</div>
+											</div>
+											<br>
+											</input>
+										</div>
+									</div>
+									`;
+  								} else {
+  									document.getElementById("tmp1").innerHTML = "sisanya";
+  								}
+  							}
+  						</script>
+<!-- 
+  						<div class="tampung1" id="tmp1"></div>
+  						<div class="tampung2" id="tmp2"></div> -->
+  						<!--
   						<label for="">Checklist</label>
   						<div class="form-check">
   							<div class="form-line">
