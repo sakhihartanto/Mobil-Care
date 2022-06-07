@@ -1,3 +1,36 @@
+<?php
+  function fetch_data(){
+    $output = '';  
+    $no = 1;
+    $connect = mysqli_connect("localhost", "root", "", "inventori");  
+    $sql = "select * from pemeliharaan";  
+    $result = mysqli_query($connect, $sql);  
+    while($data = mysqli_fetch_array($result)) 
+    {
+    $output .= '<tr style="color:black">
+                  <td>'.$no++.'</td>
+                  <td>'.$data["id_pemeliharaan"].'</td>
+                  <td>'.$data["tanggal"].'</td>
+                  <td>'.$data["kode_barang"].'</td>
+                  <td>'.$data["nama_mesin"].'</td>
+                  <td>'.$data["checklist"].'</td>
+                  <td>'.$data["petugas"].'</td>
+                </tr>
+                ';  
+    }  
+    return $output; 
+  }
+?>
+
+
+<?php
+  if(isset($_POST["create_pdf"]))  
+    {  
+      echo '<script type="text/javascript">window.open("page/laporan/pdf_barangmasuk.php");</script>';
+    }  
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -49,7 +82,7 @@
               }
               echo "</select>";
               ?>
-              
+
             </div>
             <input type="submit" class="" name="submit2" value="Tampilkan">
           </div>
@@ -77,31 +110,18 @@
 
       <tbody>
         <?php
-
-        $no = 1;
-        $sql = $koneksi->query("select * from pemeliharaan");
-        while ($data = $sql->fetch_assoc()) {
-
+          echo fetch_data();
         ?>
-
-          <tr style="color:black">
-            <td><?php echo $no++; ?></td>
-            <td><?php echo $data['id_pemeliharaan'] ?></td>
-            <td><?php echo $data['tanggal'] ?></td>
-            <td><?php echo $data['kode_barang'] ?></td>
-            <td><?php echo $data['nama_mesin'] ?></td>
-            <td><?php echo $data['checklist'] ?></td>
-            <td><?php echo $data['petugas'] ?></td>
-          </tr>
-        <?php } ?>
-
       </tbody>
     </table>
 
+    <form method="post">  
+        <input type="submit" name="create_pdf" class="btn btn-danger" value="Create PDF" />  
+    </form> 
+</div>
 </body>
 
 </html>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
@@ -109,7 +129,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function() {
     $('#dataTable').DataTable({
       dom: 'Bfrtip',
@@ -123,4 +143,4 @@
       }]
     });
   });
-</script>
+</script> -->
