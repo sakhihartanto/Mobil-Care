@@ -1,14 +1,25 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
+  <style>
+    .has-bg-img {
+      background-image: url("https://res.cloudinary.com/website-jtk-cdn/image/upload/v1654576661/Logo_mobil_care_rchcmt.png");
+      background-size: 20%;
+      /* Here is your opacity */
 
+    }
+
+    table {
+      border: 5px solid blue;
+    }
+  </style>
   <!-- DataTales Example -->
-  <div class="card shadow mb-4">
+  <div class="card shadow mb-4 has-bg-img">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Data Karyawan</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered table-striped table-light" id="dataTable" width="100%" cellspacing="0">
           <thead class="table-dark">
             <tr>
               <th>No</th>

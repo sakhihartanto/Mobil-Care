@@ -107,13 +107,11 @@ if (empty($_SESSION['staf'])) {
 
       <!-- Nav Item - Pages Collapse Menu -->
 
-      <!--
       <li class="nav-item active">
         <a class="nav-link" href="?page=pengguna">
           <i class="fas fa-fw fa-home"></i>
           <span>Data Karyawan</span></a>
       </li>
-    -->
 
 
       <li class="nav-item active">
@@ -125,7 +123,6 @@ if (empty($_SESSION['staf'])) {
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu:</h6>
             <a class="collapse-item" href="?page=mesin">Data Mesin</a>
-            <a class="collapse-item" href="?page=pengguna">Data Karyawan</a>
           </div>
         </div>
       </li>

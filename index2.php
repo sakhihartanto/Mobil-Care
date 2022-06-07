@@ -138,8 +138,8 @@ if (empty($_SESSION['mekanik'])) {
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Menu:</h6>
-            <a class="collapse-item" href="?page=pemeliharaan">Planned Maintenance</a>
-            <a class="collapse-item" href="?page=kerusakan">Unplanned Maintenance</a>
+            <a class="collapse-item" href="?page=pemeliharaan">Pemeliharaan Preventif</a>
+            <a class="collapse-item" href="?page=kerusakan">Data Kerusakan</a>
 
 
           </div>

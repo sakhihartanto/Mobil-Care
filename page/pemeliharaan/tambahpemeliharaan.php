@@ -98,7 +98,7 @@
 
   						<script type="text/javascript">
   							function test() {
-  								if (document.getElementById("kode_mesin").value == "04.437.001") {
+  								if (document.getElementById("kode_mesin").value == "04.437.001" || document.getElementById("kode_mesin").value == "04.438.001") {
   									document.getElementById("tmp1").innerHTML = `
 									  <label>Checklist</label>
 										<div class="form-group">
@@ -129,13 +129,11 @@
 												</label>
 											</div>
 											</div>
-											<br>
-											</input>
 										</div>
 										</div>
 									`;
-  								} else if (document.getElementById("kode_mesin").value == "04.438.001") {
-									document.getElementById("tmp1").innerHTML = `
+  								} else if (document.getElementById("kode_mesin").value == "04.160.001-003") {
+  									document.getElementById("tmp1").innerHTML = `
 									<label>Checklist</label>
 									<div class="form-group">
 										<div class="form-line">
@@ -153,17 +151,49 @@
 													</label>
 												</div>
 											</div>
-											<br>
-											</input>
 										</div>
 									</div>
 									`;
-  								} else {
-  									document.getElementById("tmp1").innerHTML = "sisanya";
+  								} else if (document.getElementById("kode_mesin").value == "04.542.001-002") {
+  									document.getElementById("tmp1").innerHTML = `
+									<label>Checklist</label>
+									<div class="form-group">
+										<div class="form-line">
+											<div class="form-check">
+												<div class="form-line">
+													<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa level cairan hidrolik dengan lift berada di bawah." />
+													<label class="form-check-label" for="checklist">
+													Periksa level cairan hidrolik dengan lift berada di bawah
+													</label>
+												</div>
+												<div class="form-line">
+													<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa kebocoran oli, suara yang tidak biasa." />
+													<label class="form-check-label" for="checklist">
+													Periksa kebocoran oli, suara yang tidak biasa
+													</label>
+												</div>
+												<div class="form-line">
+													<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Periksa kekencangan baut jangkar." />
+													<label class="form-check-label" for="checklist">
+													Periksa kekencangan baut jangkar
+													</label>
+												</div>
+												<div class="form-line">
+													<input type="checkbox" name="checklist[]" class="form-check-input" id="checklist[]" value="Ganti suku cadang yang rusak dengan suku cadang asli pabrik." />
+													<label class="form-check-label" for="checklist">
+													Ganti suku cadang yang rusak dengan suku cadang asli pabrik
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+									`;
+  									} else {
+  										document.getElementById("tmp1").innerHTML = "No Checklist Yet!";
+  									}
   								}
-  							}
   						</script>
-<!-- 
+  						<!-- 
   						<div class="tampung1" id="tmp1"></div>
   						<div class="tampung2" id="tmp2"></div> -->
   						<!--

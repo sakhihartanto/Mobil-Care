@@ -1,14 +1,25 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
+	<style>
+		.has-bg-img {
+			background-image: url("https://res.cloudinary.com/website-jtk-cdn/image/upload/v1654576661/Logo_mobil_care_rchcmt.png");
+			background-size: 20%;
+			/* Here is your opacity */
 
+		}
+
+		table {
+			border: 5px solid blue;
+		}
+	</style>
 	<!-- DataTales Example -->
-	<div class="card shadow mb-4">
+	<div class="card shadow mb-4 has-bg-img">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Data Kerusakan Mesin</h6>
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable">
+				<table class="table table-bordered table-striped table-light" id="dataTable">
 					<thead class="table-dark">
 						<tr>
 							<th>No</th>
@@ -27,7 +38,7 @@
 						<?php
 
 						$no = 1;
-						$sql = $koneksi->query("select * from kerusakan");
+						$sql = $koneksi->query("select * from kerusakan where done=0");
 						while ($data = $sql->fetch_assoc()) {
 
 						?>
@@ -47,6 +58,7 @@
 								<td>
 									<a href="?page=kerusakan&aksi=ubahkerusakan&id_kerusakan=<?php echo $data['id_kerusakan'] ?>" class="btn btn-success">Ubah</a>
 									<a onclick="return confirm('Apakah anda yakin akan menghapus data ini?')" href="?page=kerusakan&aksi=hapuskerusakan&id_kerusakan=<?php echo $data['id_kerusakan'] ?>" class="btn btn-danger">Hapus</a>
+									<a onclick="return confirm('Apakah anda yakin akan menyelesaikan data ini?')" href="?page=kerusakan&aksi=selesaikerusakan&id_kerusakan=<?php echo $data['id_kerusakan'] ?>" class="btn btn-primary">Selesai</a>
 								</td>
 							</tr>
 						<?php } ?>
